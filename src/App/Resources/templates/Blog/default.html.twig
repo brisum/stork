@@ -1,0 +1,34 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} post post-{{ entity.name }}{% endblock %}
+
+{% block breadcrumbs_items %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('bsm_blog_post_list') }}">{% trans %}blog.breadcrumbs{% endtrans %}</a>
+    </li>
+    <li>
+        {{ entity.title }}
+    </li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row column">
+        {{ entity.content | raw }}
+
+        {% if entity.author %}
+            <p class="author">
+                {% trans %}blog.post.author{% endtrans %}: {{ entity.author.firstName }} {{ entity.author.lastName }}
+            </p>
+        {% endif %}
+        <p class="date">
+            {{ entity.created|date('j') }}
+            {% if 'en' == app.request.locale %}
+                {{ entity.created|date('F')|trans({}, 'date') }},
+            {% else %}
+                {{ entity.created|date('F')|trans({}, 'date')|monthGenitiveCase }},
+            {% endif %}
+            {{ entity.created|date('Y') }}
+        </p>
+    </div>
+{% endblock %}

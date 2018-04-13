@@ -1,0 +1,26 @@
+services:
+#    bsm_page.sonata_admin.page:
+#        class: SymfonyCmsPageBundle\SonataAdmin\Page
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: "Page", label: "Page" }
+#        arguments:
+#            - ~
+#            - SymfonyCmsPageBundle\Entity\Page
+#            - ~
+#        calls:
+#            - [ setTranslationDomain, [SymfonyCmsPageBundle]]
+#            - [ inject, ['@service_container']]
+#        public: true
+#
+#    bsm_page.sonata_admin.page_seo_data:
+#        class: SymfonyCmsPageBundle\SonataAdmin\PageSeoData
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: "Page", label: "SeoData" }
+#        arguments:
+#            - ~
+#            - SymfonyCmsPageBundle\Entity\PageSeoData
+#            - ~
+#        calls:
+#            - [ setTranslationDomain, [SymfonyCmsPageBundle]]
+#            - [ inject, ['@service_container']]
+#        public: true

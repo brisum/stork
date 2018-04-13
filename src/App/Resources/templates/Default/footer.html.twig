@@ -1,0 +1,32 @@
+<footer class="main-footer">
+    <div class="row column">
+        <ul class="menu">
+            <li>
+                <i class="fa fa-phone" aria-hidden="true" title="{% trans %}contacts.phone{% endtrans %}"></i>
+                {{ bsm_settings_option('contacts.phone') }}
+            </li>
+            <li>
+                <i class="fa fa-envelope-o" aria-hidden="true" title="{% trans %}contacts.email{% endtrans %}"></i>
+                {{ bsm_settings_option('contacts.email') }}
+            </li>
+            <li>
+                <i class="fa fa-viber" aria-hidden="true" title="{% trans %}contacts.viber{% endtrans %}"></i>
+                {{ bsm_settings_option('contacts.viber') }}
+            </li>
+            <li>
+                <i class="fa fa-whatsapp" aria-hidden="true" title="{% trans %}contacts.whatsapp{% endtrans %}"></i>
+                {{ bsm_settings_option('contacts.whatsapp') }}
+            </li>
+            <li>
+                <i class="fa fa-skype" aria-hidden="true" title="{% trans %}contacts.skype{% endtrans %}"></i>
+                {{ bsm_settings_option('contacts.skype') }}
+            </li>
+        </ul>
+    </div>
+
+    <div class="copyright">
+        &copy; {{ 'now'|date('Y') }} Legal Deal. {% trans %}footer.copyright{% endtrans %}</noindex>
+    </div>
+</footer>
+
+{% include('App:Default:contact-widget.html.twig') %}

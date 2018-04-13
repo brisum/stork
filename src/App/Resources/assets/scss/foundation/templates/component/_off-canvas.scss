@@ -1,0 +1,26 @@
+.off-canvas {
+  padding-top: $global-padding*2;
+
+  .close-button {
+    font-size: 3em;
+    top: -5px;
+  }
+
+  > ul.menu {
+    a {
+      color: $dark-black;
+      font-size: 14px;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover {
+        color: $anchor-color;
+      }
+    }
+
+    li.is-accordion-submenu-parent > a::after {
+      border-color: $dark-black transparent transparent;
+    }
+  }
+}
+//

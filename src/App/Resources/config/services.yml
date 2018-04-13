@@ -1,0 +1,43 @@
+services:
+#  app.twig.extension:
+#      class: App\DependencyInjection\TwigExtension
+#      arguments:
+#          - "@service_container"
+#      tags:
+#          - { name: 'twig.extension' }
+#
+#  app.form.feedback:
+#    class: App\Form\Feedback\Form
+#    arguments:
+#        - "@session"
+#        - '@twig'
+#        - '@swiftmailer.mailer'
+#        - "@translator"
+#        - "@=service('router').generate('bsm_astute_form_listener')"
+#        - '%email_from%'
+#        - '%email_from_name%'
+#        - '%email_notification%'
+#
+#  app.contact_widget.form.feedback:
+#    class: App\Form\ContactWidget\Feedback
+#    arguments:
+#        - "@session"
+#        - '@twig'
+#        - '@swiftmailer.mailer'
+#        - "@translator"
+#        - "@=service('router').generate('bsm_astute_form_listener')"
+#        - '%email_from%'
+#        - '%email_from_name%'
+#        - '%email_notification%'
+#
+#  app.contact_widget.form.callback:
+#    class: App\Form\ContactWidget\Callback
+#    arguments:
+#        - "@session"
+#        - '@twig'
+#        - '@swiftmailer.mailer'
+#        - "@translator"
+#        - "@=service('router').generate('bsm_astute_form_listener')"
+#        - '%email_from%'
+#        - '%email_from_name%'
+#        - '%email_notification%'

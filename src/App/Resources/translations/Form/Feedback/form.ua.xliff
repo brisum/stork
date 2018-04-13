@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="form.feedback.title">
+                <source>form.feedback.title</source>
+                <target>Зв'яжіться з нами</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.title_desc">
+                <source>form.feedback.title_desc</source>
+                <target>Надішліть нам свої запитання та запити щодо правових питань</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.name">
+                <source>form.feedback.name</source>
+                <target>Ім'я</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.email">
+                <source>form.feedback.email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.message">
+                <source>form.feedback.message</source>
+                <target>Повідомлення</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.submit">
+                <source>form.feedback.submit</source>
+                <target>Відправити лист</target>
+            </trans-unit>
+
+            <trans-unit id="app.form.feedback.message.success">
+                <source>app.form.feedback.message.success</source>
+                <target>Лист успішно відправлений.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

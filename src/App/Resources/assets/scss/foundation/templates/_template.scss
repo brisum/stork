@@ -1,0 +1,150 @@
+.off-canvas-wrapper {
+  overflow-x: visible;
+}
+.off-canvas {
+  height: 100%;
+  overflow-x: hidden;
+}
+.off-canvas-content {
+  background: transparent;
+}
+
+
+#content {
+  min-height: 500px;
+
+  #content-inner {
+    padding-top: 0;
+    padding-bottom: 80px;
+  }
+
+  .h1-bg {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: url("/bundles/app/img/h1-bg.jpg") center center/cover no-repeat;
+
+    h1 {
+      color: $white;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0;
+      font-size: 4rem;
+      text-align: center;
+      text-transform: uppercase;
+
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+p.title,
+.content-title {
+  margin-bottom: 20px;
+  color: $dark-black;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  font-size: 1.8rem;
+}
+
+p.title-desc,
+.content-title-desc {
+  margin-bottom: 20px;
+  color: $dark-black;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-size: 1.25rem;
+}
+
+.title-delimiter {
+  position: relative;
+  height: 1px;
+  margin-bottom: 30px;
+
+  &.left:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4%;
+    height: 1px;
+    background: $dark-black;
+  }
+
+  &.center:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 46%;
+    width: 8%;
+    height: 1px;
+    background: $dark-black;
+  }
+}
+
+@media all and (max-width: 920px){
+  #content {
+    .h1-bg {
+      h1 {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+@media all and (max-width: $screen-small-max) {
+  #content {
+    .h1-bg {
+      h1 {
+        font-size: 2.8rem;
+      }
+    }
+  }
+
+  .title-delimiter {
+    &.left:after {
+      width: 8%;
+    }
+
+    &.center:after {
+      width: 12%;
+    }
+  }
+}
+
+@media all and (max-width: 600px) {
+  #content {
+    .h1-bg {
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $screen-xsmall-max) {
+  #content {
+    .h1-bg {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .title-delimiter {
+    &.left:after {
+      width: 18%;
+    }
+
+    &.center:after {
+      width: 24%;
+    }
+  }
+}

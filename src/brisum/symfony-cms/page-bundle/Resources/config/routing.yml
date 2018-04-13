@@ -1,0 +1,4 @@
+bsm_page:
+    resource: "@SymfonyCmsPageBundle/Controller/"
+    type:     annotation
+    prefix:   /

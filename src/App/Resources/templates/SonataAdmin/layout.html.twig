@@ -1,0 +1,28 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        .content .locale_switcher {
+            display: none;
+        }
+
+        img.admin-preview {
+           width: 200px;
+           height: auto;
+        }
+    </style>
+{% endblock %}
+
+
+{% block sonata_page_content_header %}
+    {{ include('App::SonataAdmin/Block/block_locale_switcher.html.twig') }}
+
+    {{  parent() }}
+{% endblock %}
+
+
+{% block side_bar_after_nav %}
+    {# clear #}
+{% endblock %}

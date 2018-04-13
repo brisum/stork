@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="January">
+                <source>January</source>
+                <target>Січень</target>
+            </trans-unit>
+            <trans-unit id="February">
+                <source>February</source>
+                <target>Лютий</target>
+            </trans-unit>
+            <trans-unit id="March">
+                <source>March</source>
+                <target>Березень</target>
+            </trans-unit>
+            <trans-unit id="v">
+                <source>April</source>
+                <target>Квітень</target>
+            </trans-unit>
+            <trans-unit id="May">
+                <source>May</source>
+                <target>Травень</target>
+            </trans-unit>
+            <trans-unit id="June">
+                <source>June</source>
+                <target>Червень</target>
+            </trans-unit>
+            <trans-unit id="July">
+                <source>July</source>
+                <target>Липень</target>
+            </trans-unit>
+            <trans-unit id="August">
+                <source>August</source>
+                <target>Серпень</target>
+            </trans-unit>
+            <trans-unit id="September">
+                <source>September</source>
+                <target>Вересень</target>
+            </trans-unit>
+            <trans-unit id="October">
+                <source>October</source>
+                <target>Жовтень</target>
+            </trans-unit>
+            <trans-unit id="November">
+                <source>November</source>
+                <target>Листопад</target>
+            </trans-unit>
+            <trans-unit id="December">
+                <source>December</source>
+                <target>Грудень</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

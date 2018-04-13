@@ -1,0 +1,16 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} page page-{{ entity.name }}{% endblock %}
+
+{% block breadcrumbs_items %}
+    {{ parent() }}
+    <li>
+        {{ entity.title }}
+    </li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row column">
+        {{ entity.content | raw }}
+    </div>
+{% endblock %}

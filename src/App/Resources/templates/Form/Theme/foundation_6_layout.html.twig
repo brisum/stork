@@ -1,0 +1,34 @@
+{% extends "foundation_5_layout.html.twig" %}
+
+{# Rows #}
+{% block form_row -%}
+    <div id="{{ form.vars.id }}_row" class="row">
+        <div class="large-12 columns{% if (not compound or force_error|default(false)) and not valid %} error{% endif %}">
+            {% if form.vars.errors.count() %}
+                {{ form_errors(form) }}
+            {% else %}
+                {{ form_label(form) }}
+            {% endif %}
+            {{ form_widget(form) }}
+        </div>
+    </div>
+{%- endblock form_row %}
+
+{%- block button_row -%}
+    <div class="row-button">
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock button_row -%}
+
+
+{# Errors #}
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+        {% if form.parent %}<small class="is-invalid-label">{% else %}<div data-alert class="alert-box alert">{% endif %}
+        {%- for error in errors -%}
+            {{ error.message }}
+            {% if not loop.last %}, {% endif %}
+        {%- endfor -%}
+        {% if form.parent %}</small>{% else %}</div>{% endif %}
+    {%- endif %}
+{%- endblock form_errors %}

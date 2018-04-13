@@ -1,0 +1,31 @@
+{% extends 'KnpMenuBundle::menu.html.twig' %}
+
+{% block list %}
+    {% if not item.parent %}
+        <ul class="vertical menu accordion-menu" data-accordion-menu>
+            {{ block('children') }}
+        </ul>
+    {% else %}
+        <ul class="nested vertical menu">
+            {{ block('children') }}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+
+{% block item %}
+    {% if item.children %}
+        <li>
+            <a href="{{ item.uri }}">
+                {{ item.label }}
+            </a>
+            {{ block('list') }}
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ item.uri }}">
+                {{ item.label }}
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

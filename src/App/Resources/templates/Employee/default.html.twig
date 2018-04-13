@@ -1,0 +1,9 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} employee employee-{{ entity.name }}{% endblock %}
+
+{% block content %}
+    <div class="row column">
+        {{ entity.content | raw }}
+    </div>
+{% endblock %}

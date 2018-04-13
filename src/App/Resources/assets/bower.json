@@ -1,0 +1,21 @@
+{
+  "name": "foundationpress",
+  "main": [
+    "assets/stylesheets/foundation.css",
+    "assets/javascript/foundation.js"
+  ],
+  "ignore": [],
+  "dependencies": {
+    "foundation-sites": "6.2.3",
+    "motion-ui": "~1.2.0",
+    "fontawesome": "~4.7.0",
+    "elastislide": "*",
+    "imagesloaded": "^4.1.2",
+    "moment": "^2.18.1",
+    "foundation-emails": "^2.2.1",
+    "fa-viber": "*"
+  },
+  "devDependencies": {
+    "select2": "^4.0.3"
+  }
+}

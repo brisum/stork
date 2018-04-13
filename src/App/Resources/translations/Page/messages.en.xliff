@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="contacts.phone">
+                <source>contacts.phone</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="contacts.email">
+                <source>contacts.email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="contacts.viber">
+                <source>contacts.viber</source>
+                <target>Viber</target>
+            </trans-unit>
+            <trans-unit id="contacts.whatsapp">
+                <source>contacts.whatsapp</source>
+                <target>Whatsapp</target>
+            </trans-unit>
+            <trans-unit id="contacts.skype">
+                <source>contacts.skype</source>
+                <target>Skype</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

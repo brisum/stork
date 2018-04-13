@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="form.message-error">
+                <source>form.message-error</source>
+                <target>Sorry, there was an error while sending your data</target>
+            </trans-unit>
+
+            <trans-unit id="form.error.name.not_blank">
+                <source>form.error.name.not_blank</source>
+                <target>Enter name</target>
+            </trans-unit>
+            <trans-unit id="form.error.email.not_blank">
+                <source>form.error.email.not_blank</source>
+                <target>Enter e-mail</target>
+            </trans-unit>
+            <trans-unit id="form.error.message.not_blank">
+                <source>form.error.message.not_blank</source>
+                <target>Enter message</target>
+            </trans-unit>
+            <trans-unit id="form.error.phone.not_blank">
+                <source>form.error.phone.not_blank</source>
+                <target>Enter phone</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

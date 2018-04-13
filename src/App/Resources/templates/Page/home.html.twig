@@ -1,0 +1,19 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} page page-{{ entity.name }}{% endblock %}
+
+{% block content %}
+    <div id="section-1" class="section-1 landscape">
+        <div class="section-1-bg-image">
+            {% set locale = app.request.getLocale()[-2:2]|lower %}
+            <img src="{{ asset('/bundles/app/img/page/home/section-1/' ~ locale ~'.jpg') }}?{{ assetsVersion }}" alt="section 1">
+        </div>
+        <div class="section-1-bg-gradient">
+        </div>
+        <div class="row row-content">
+            <div class="xsmall-12 small-9 medium-6 large-5 columns content">
+                {{ entity.content | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

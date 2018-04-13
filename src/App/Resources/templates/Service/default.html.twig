@@ -1,0 +1,19 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} service service-{{ entity.name }}{% endblock %}
+
+{% block breadcrumbs_items %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('bsm_service_list') }}">{% trans %}services.breadcrumbs{% endtrans %}</a>
+    </li>
+    <li>
+        {{ entity.title }}
+    </li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row column">
+        {{ entity.content | raw }}
+    </div>
+{% endblock %}

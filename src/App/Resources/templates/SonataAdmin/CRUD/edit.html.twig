@@ -1,0 +1,13 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/ivoryckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/ivoryckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('textarea.ckeditor').ckeditor();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,26 @@
+services:
+    bsm_user.sonata_admin.user:
+        class: BSMUserBundle\SonataAdmin\User
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "User", label: "User" }
+        arguments:
+            - ~
+            - BSMUserBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [BSMUserBundle]]
+            - [ setUserManager, ['@fos_user.user_manager']]
+        public: true
+
+    bsm_user.sonata_admin.group:
+            class: BSMUserBundle\SonataAdmin\Group
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "User", label: "Group" }
+            arguments:
+                - ~
+                - BSMUserBundle\Entity\Group
+                - ~
+            calls:
+                - [ inject, ['@service_container']]
+                - [ setTranslationDomain, [BSMUserBundle]]
+            public: true

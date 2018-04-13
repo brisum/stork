@@ -1,0 +1,29 @@
+{% extends 'KnpMenuBundle::menu.html.twig' %}
+
+{% block list %}
+    {% if options.depth == null %}
+        <ul class="dropdown menu" data-dropdown-menu>
+            {{ block('children') }}
+        </ul>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+
+{% block item %}
+    {% if item.children %}
+        <li class="has-submenu">
+            <a href="{{ item.uri }}">
+                {{ item.label }}
+            </a>
+            {{ block('list') }}
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ item.uri }}">
+                {{ item.label }}
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

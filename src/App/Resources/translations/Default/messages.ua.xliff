@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="menu.offcanvas.title">
+                <source>menu.offcanvas.title</source>
+                <target>Меню</target>
+            </trans-unit>
+
+            <trans-unit id="navbar.menu.service">
+                <source>navbar.menu.service</source>
+                <target>Послуги</target>
+            </trans-unit>
+            <trans-unit id="navbar.menu.team">
+                <source>navbar.menu.team</source>
+                <target>Команда</target>
+            </trans-unit>
+            <trans-unit id="navbar.menu.blog">
+                <source>navbar.menu.blog</source>
+                <target>Блог</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumbs.home">
+                <source>breadcrumbs.home</source>
+                <target>Головна</target>
+            </trans-unit>
+
+            <trans-unit id="footer.copyright">
+                <source>footer.copyright</source>
+                <target>Всі права захищені. Заборонено використання матеріалів сайту без згоди його авторів і зворотного посилання.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

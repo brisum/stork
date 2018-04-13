@@ -1,0 +1,57 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} page page-{{ entity.name }}{% endblock %}
+
+{% block breadcrumbs_items %}
+    {{ parent() }}
+    <li>
+        {{ entity.title }}
+    </li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row" data-common-height data-disable-width="768">
+        <div class="xsmall-12 medium-6 columns">
+            <div class="page-content-wrapper" data-common-height-element>
+                <p>
+                    {% trans %}contacts.phone{% endtrans %}:
+                    {{ bsm_settings_option('contacts.phone') }}
+                </p>
+                <p>
+                    {% trans %}contacts.email{% endtrans %}:
+                    {{ bsm_settings_option('contacts.email') }}
+                </p>
+                <p>
+                    {% trans %}contacts.viber{% endtrans %}:
+                    {{ bsm_settings_option('contacts.viber') }}
+                </p>
+                <p>
+                    {% trans %}contacts.whatsapp{% endtrans %}:
+                    {{ bsm_settings_option('contacts.whatsapp') }}
+                </p>
+                <p>
+                    {% trans %}contacts.skype{% endtrans %}:
+                    {{ bsm_settings_option('contacts.skype') }}
+                </p>
+
+                <div class="clear"></div>
+                {{ entity.content | raw }}
+            </div>
+        </div>
+
+        <div class="xsmall-12 medium-6 columns">
+            <div class="form-feedback-wrapper" data-common-height-element>
+                <p class="title text-center">
+                    {% trans from 'form' %}form.feedback.title{% endtrans %}
+                </p>
+                <div class="title-delimiter center"></div>
+
+                <p class="title-desc text-center">
+                    {% trans from 'form' %}form.feedback.title_desc{% endtrans %}
+                </p>
+
+                {{ bsm_astute_form('app.form.feedback') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

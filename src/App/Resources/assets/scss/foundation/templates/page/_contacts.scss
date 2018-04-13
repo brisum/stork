@@ -1,0 +1,28 @@
+body.page-contacts {
+  #content {
+    background: url(/bundles/app/img/page/employee-list/bg.jpeg) center center / cover no-repeat;
+  }
+
+  .page-content-wrapper {
+    padding: 40px;
+    background: $white;
+    margin-bottom: $global-margin;
+  }
+
+  .form-feedback-wrapper {
+    padding: 40px;
+    background: $white;
+    margin-bottom: $global-margin;
+
+    p.title {
+      margin-bottom: 30px;
+    }
+    p.title-desc {
+      margin-bottom: 60px;
+    }
+
+    .title-delimiter {
+      margin-bottom: 30px;
+    }
+  }
+}

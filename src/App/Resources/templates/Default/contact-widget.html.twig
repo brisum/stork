@@ -1,0 +1,36 @@
+<div id="contact-widget" class="contact-widget">
+    <div class="form-wrapper" data-method="feedback">
+        <button class="close">×</button>
+        <p class="widget-title">
+            {% trans from 'contact_widget' %}contact_widget.feedback.title{% endtrans %}
+        </p>
+        <div class="row">
+            <div class="xsmall-12 columns">
+                {{ bsm_astute_form('app.contact_widget.form.feedback') }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-wrapper" data-method="callback">
+        <button class="close">×</button>
+        <p class="widget-title">
+            {% trans from 'contact_widget' %}contact_widget.callback.title{% endtrans %}
+        </p>
+        <div class="row">
+            <div class="xsmall-12 columns">
+                {{ bsm_astute_form('app.contact_widget.form.callback') }}
+            </div>
+        </div>
+    </div>
+
+    <div class="method" data-method="feedback"></div>
+    <div class="messages">
+        <div class="message" data-method="feedback">
+            {% trans from 'contact_widget' %}contact_widget.feedback.message{% endtrans %}
+        </div>
+        <div class="message" data-method="callback">
+            {% trans from 'contact_widget' %}contact_widget.callback.message{% endtrans %}
+        </div>
+    </div>
+    <div class="method" data-method="callback"></div>
+</div>

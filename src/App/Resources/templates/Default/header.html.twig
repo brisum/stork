@@ -1,0 +1,33 @@
+<header id="header" class="main-header">
+
+    <div class="row">
+        <div class="xsmall-12 columns title-bar">
+            <div class="title-bar-left show-for-xsmall-only">
+                <button class="menu-icon" type="button" data-open="offCanvas"></button>
+                <span class="title-bar-title">{% trans %}menu.offcanvas.title{% endtrans %}</span>
+            </div>
+            <div class="title-bar-right">
+                {% include('App:Default:locale_switcher.html.twig') %}
+            </div>
+        </div>
+
+        <div class="xsmall-12 medium-4 columns logo">
+            {% if 'bsm_page_home' == app.request.attributes.get('_route') %}
+                <img src="{{ asset('bundles/app/img/logo/logo.svg') }}" alt="logo">
+                <span class="logo-text">Legal Deal</span>
+            {% else %}
+                <a href="{{ path('bsm_page_home') }}">
+                    <img src="{{ asset('bundles/app/img/logo/logo.svg') }}" alt="logo">
+                    <span class="logo-text">Legal Deal</span>
+                </a>
+            {% endif %}
+        </div>
+        <div class="xsmall-12 medium-8 columns navbar-wrapper">
+            <div class="top-bar hide-for-xsmall-only">
+                <div class="top-bar-right">
+                    {{knp_menu_render('App:Builder:mainMenu', {'template': 'App:Default:Menu/knp_menu_navbar.html.twig'}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

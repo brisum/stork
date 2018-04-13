@@ -1,0 +1,52 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} post-list{% endblock %}
+
+{% block breadcrumbs_items %}
+    {{ parent() }}
+    <li>
+        {% trans %}blog.breadcrumbs{% endtrans %}
+    </li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row">
+        {% for entity in pagination %}
+            <div class="xsmall-12 small-6 medium-4 columns">
+                <div class="post" href="{{ path('bsm_blog_post', {name: entity.name}) }}">
+                    <a href="{{ path('bsm_blog_post', {name: entity.name}) }}">
+                        <img class="thumb" src="{{ asset(entity.image) }}" />
+                    </a>
+                    <div class="excerpt">
+                        <a class="post-title" href="{{ path('bsm_blog_post', {name: entity.name}) }}">
+                            {{ entity.title }}
+                        </a>
+
+                        <p class="date">
+                            {{ entity.created|date('j') }}
+                            {% if 'en' == app.request.locale %}
+                                {{ entity.created|date('F')|trans({}, 'date') }},
+                            {% else %}
+                                {{ entity.created|date('F')|trans({}, 'date')|monthGenitiveCase }},
+                            {% endif %}
+                            {{ entity.created|date('Y') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {% if loop.index % 3 == 0  %}
+                <div class="col-medium-delimeter col-large-delimeter col-xlarge-delimeter col-xxlarge-delimeter"></div>
+            {% endif %}
+            {% if loop.index % 2 == 0  %}
+                <div class="col-small-delimeter"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="xsmall-12 text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}

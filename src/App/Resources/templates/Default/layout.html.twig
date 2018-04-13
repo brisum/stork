@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+        <link rel="icon" type="image/png" href="{{ asset('bundles/app/img/favicon/favicon-32x32.png') }}"   sizes="32x32" />
+        <link rel="icon" type="image/png" href="{{ asset('bundles/app/img/favicon/favicon-16x16.png') }}"   sizes="16x16" />
+        <link rel="icon" type="image/png" href="{{ asset('bundles/app/img/favicon/favicon-128x128.png') }}" sizes="128x128" />
+
+        <title>{% block title %}{% if seoData.title is defined %}{{ seoData.title }}{% endif %}{% endblock %}</title>
+        <meta name="description" content="{% block meta_description %}{% if seoData.metaDescription is defined %}{{ seoData.metaDescription }}{% endif %}{% endblock %}">
+        <meta name="keywords" content="{% block meta_keywords %}{% if seoData.metaKeywords is defined %}{{ seoData.metaKeywords }}{% endif %}{% endblock %}">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900|PT+Sans:regular,700|Roboto:regular,400,500" media="none" onload="if(media!='all')media='all'">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/style.css') }}?{{ assetsVersion }}" >
+        {% block stylesheets %}{% endblock %}
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PSF3LL9');</script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body class="{% block body_class %}lang-{{ app.request.getLocale() }} {% endblock %}">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSF3LL9"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
+        {% block body %}
+            <div class="off-canvas-wrapper" data-off-canvas-wrapper>
+                <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+
+                    <button class="close-button" aria-label="Close menu" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    {{knp_menu_render('App:Builder:mainMenu', {'template': 'App:Default:Menu/knp_menu_offcanvas.html.twig'}) }}
+                </div>
+
+                <div class="off-canvas-content" data-off-canvas-content>
+                    {% include('App:Default:header.html.twig') %}
+
+                    <div id="content">
+                        {% block content %}
+                            {% block h1 %}
+                                {% if seoData.h1 is defined and seoData.h1 %}
+                                    <div class="h1-bg">
+                                        <div class="row column">
+                                            <h1>{{ seoData.h1 }}</h1>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block breadcrumbs %}
+                                <div class="row">
+                                    <div class="xsmall-12 columns">
+                                        <ul class="breadcrumbs">
+                                            {% block breadcrumbs_items %}
+                                                <li>
+                                                    <a href="/">{% trans %}breadcrumbs.home{% endtrans %}</a>
+                                                </li>
+                                                {#{% if seoData.breadcrumbs is defined and seoData.breadcrumbs %}#}
+                                                {#{% for breadcrumbTitle, breadcrumbLink in seoData.breadcrumbs %}#}
+                                                {#<li>#}
+                                                {#{% if breadcrumbLink %}#}
+                                                {#<a href="{{ breadcrumbLink }}">{{ breadcrumbTitle }}</a>#}
+                                                {#{% else %}#}
+                                                {#{{ breadcrumbTitle }}#}
+                                                {#{% endif %}#}
+                                                {#</li>#}
+                                                {#{% endfor %}#}
+                                                {#{% endif %}#}
+                                            {% endblock %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endblock %}
+
+                            <div id="content-inner">
+                                {% block content_inner %}
+
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+                    </div>
+
+                    {% include('App:Default:footer.html.twig') %}
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                var App = App || {};
+                App.constants = App.constants || {};
+                App.constants.assetsVersion = '{{ assetsVersion }}';
+            </script>
+            <script type="text/javascript" src="{{ asset('bundles/app/javascript/script.js') }}?{{ assetsVersion }}"></script>
+            {% block javascripts %}{% endblock %}
+        {% endblock %}
+    </body>
+</html>
+
+
+

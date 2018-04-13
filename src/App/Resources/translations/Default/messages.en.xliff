@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="menu.offcanvas.title">
+                <source>menu.offcanvas.title</source>
+                <target>Menu</target>
+            </trans-unit>
+
+            <trans-unit id="navbar.menu.service">
+                <source>navbar.menu.service</source>
+                <target>Service</target>
+            </trans-unit>
+            <trans-unit id="navbar.menu.team">
+                <source>navbar.menu.team</source>
+                <target>Team</target>
+            </trans-unit>
+            <trans-unit id="navbar.menu.blog">
+                <source>navbar.menu.blog</source>
+                <target>Blog</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumbs.home">
+                <source>breadcrumbs.home</source>
+                <target>Home</target>
+            </trans-unit>
+
+            <trans-unit id="services.h1">
+                <source>services.h1</source>
+                <target>Services</target>
+            </trans-unit>
+
+            <trans-unit id="footer.copyright">
+                <source>footer.copyright</source>
+                <target>All rights reserved. It is forbidden to use the materials of the site without the consent of its authors and back link.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

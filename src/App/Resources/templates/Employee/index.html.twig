@@ -1,0 +1,85 @@
+{% extends 'App:Default:layout.html.twig' %}
+
+{% block body_class %}{{ parent() }} employee-list{% endblock %}
+
+{% block breadcrumbs_items %}
+    {{ parent() }}
+    <li>
+        {% trans %}employees.breadcrumbs{% endtrans %}
+    </li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row">
+        {% for entity in entities %}
+            <div class="xsmall-12 small-6 medium-4 columns">
+                <div class="employee">
+                    <div class="photo">
+                        <img src="{{ entity.photo }}" alt="{{ entity.name }}">
+                    </div>
+                    <div class="name">
+                        {{ entity.firstName }} {{ entity.lastName }}
+                    </div>
+
+                    {% if entity.position %}
+                        <div class="position">
+                            {{ entity.position }}{% if entity.experience %}, {{ entity.experience }} {% trans %}employee.of_experience{% endtrans %}{% endif %}
+                        </div>
+                    {% endif %}
+
+                    {% if entity.language %}
+                        <div class="language">
+                            ({{ entity.language }})
+                        </div>
+                    {% endif %}
+
+                    <div class="spacer"></div>
+
+                    {% if entity.city or entity.country %}
+                        <div class="location">
+                            {{ entity.city }}{% if entity.city and entity.country %},{% endif %}
+                            {% if entity.country %}
+                                {{ entity.country }}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                    <div class="contact">
+                        {% if entity.phone %}
+                            <div class="phone">
+                                {{ entity.phone }}
+                            </div>
+                        {% endif %}
+                        {% if entity.email %}
+                            <div class="email">
+                                {{ entity.email }}
+                            </div>
+                        {% endif %}
+                        {% if entity.skype %}
+                            <div class="skype">
+                                {{ entity.skype }}
+                            </div>
+                        {% endif %}
+                        {% if entity.viber %}
+                            <div class="viber">
+                                {{ entity.viber }}
+                            </div>
+                        {% endif %}
+                        {% if entity.whatsapp %}
+                            <div class="whatsapp">
+                                {{ entity.whatsapp }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% if loop.index % 3 == 0  %}
+                <div class="col-medium-delimeter col-large-delimeter col-xlarge-delimeter col-xxlarge-delimeter"></div>
+            {% endif %}
+            {% if loop.index % 2 == 0  %}
+                <div class="col-small-delimeter"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

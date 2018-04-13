@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="form.feedback.title">
+                <source>form.feedback.title</source>
+                <target>Contact us</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.title_desc">
+                <source>form.feedback.title_desc</source>
+                <target>Send us your questions and inquiries on legal issues</target>
+            </trans-unit>
+
+            <trans-unit id="form.feedback.name">
+                <source>form.feedback.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.email">
+                <source>form.feedback.email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.message">
+                <source>form.feedback.message</source>
+                <target>Message</target>
+            </trans-unit>
+            <trans-unit id="form.feedback.submit">
+                <source>form.feedback.submit</source>
+                <target>Send letter</target>
+            </trans-unit>
+
+            <trans-unit id="app.form.feedback.message.success">
+                <source>app.form.feedback.message.success</source>
+                <target>The letter has been successfully sent.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

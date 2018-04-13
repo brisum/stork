@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="contact_widget.feedback.title">
+                <source>contact_widget.feedback.title</source>
+                <target>Write letter</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.feedback.message">
+                <source>contact_widget.feedback.message</source>
+                <target><![CDATA[<span>Write letter to us!</span><span>We will answer for your question.</span>]]></target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.feedback.name">
+                <source>contact_widget.form.feedback.name</source>
+                <target>Name*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.feedback.email">
+                <source>contact_widget.form.feedback.email</source>
+                <target>E-mail*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.feedback.message">
+                <source>contact_widget.form.feedback.message</source>
+                <target>Message*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.feedback.submit">
+                <source>contact_widget.form.feedback.submit</source>
+                <target>Send letter</target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.feedback.message.success">
+                <source>contact_widget.form.feedback.message.success</source>
+                <target>The letter has been successfully sent.</target>
+            </trans-unit>
+
+
+
+            <trans-unit id="contact_widget.callback.title">
+                <source>contact_widget.callback.title</source>
+                <target>Order call</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.callback.message">
+                <source>contact_widget.callback.message</source>
+                <target><![CDATA[<span>Order a call!</span><span>We call back you soon.</span>]]></target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.callback.name">
+                <source>contact_widget.form.callback.name</source>
+                <target>Name*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.callback.phone">
+                <source>contact_widget.form.callback.phone</source>
+                <target>Phone*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.callback.message">
+                <source>contact_widget.form.callback.message</source>
+                <target>Message</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.callback.submit">
+                <source>contact_widget.form.callback.submit</source>
+                <target>Wait callback</target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.callback.message.success">
+                <source>contact_widget.form.callback.message.success</source>
+                <target>Thank! We will call back you soon.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

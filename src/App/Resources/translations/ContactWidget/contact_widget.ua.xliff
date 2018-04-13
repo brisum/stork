@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="contact_widget.feedback.title">
+                <source>contact_widget.feedback.title</source>
+                <target>Написати листа</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.feedback.message">
+                <source>contact_widget.feedback.message</source>
+                <target><![CDATA[<span>Напишіть нам листа!</span><span>Ми відповімо на ваше запитання.</span>]]></target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.feedback.name">
+                <source>contact_widget.form.feedback.name</source>
+                <target>Ім'я*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.feedback.email">
+                <source>contact_widget.form.feedback.email</source>
+                <target>E-mail*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.feedback.message">
+                <source>contact_widget.form.feedback.message</source>
+                <target>Повідомлення*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.feedback.submit">
+                <source>contact_widget.form.feedback.submit</source>
+                <target>Відправити лист</target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.feedback.message.success">
+                <source>contact_widget.form.feedback.message.success</source>
+                <target>Лист успішно відправлений.</target>
+            </trans-unit>
+
+
+
+            <trans-unit id="contact_widget.callback.title">
+                <source>contact_widget.callback.title</source>
+                <target>Замовити дзвінок</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.callback.message">
+                <source>contact_widget.callback.message</source>
+                <target><![CDATA[<span>Замовте дзвінок!</span><span>Ми передзвонимо найближчим часом.</span>]]></target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.callback.name">
+                <source>contact_widget.form.callback.name</source>
+                <target>І'мя*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.callback.phone">
+                <source>contact_widget.form.callback.phone</source>
+                <target>Телефон*</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.callback.message">
+                <source>contact_widget.form.callback.message</source>
+                <target>Повідомлення</target>
+            </trans-unit>
+            <trans-unit id="contact_widget.form.callback.submit">
+                <source>contact_widget.form.callback.submit</source>
+                <target>Чекаю дзвінка</target>
+            </trans-unit>
+
+            <trans-unit id="contact_widget.form.callback.message.success">
+                <source>contact_widget.form.callback.message.success</source>
+                <target>Дякуєм! Ми передзвонимо Вам найближчим часом.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
