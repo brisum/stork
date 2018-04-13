@@ -26,15 +26,15 @@ class PageController extends Controller
 //            throw $this->createNotFoundException();
 //        }
 //
-//        $template = $entity->getTemplate();
-//        if (!array_key_exists($template, $templates)) {
-//            throw $this->createNotFoundException("Not Found Template \"{$template}\"");
-//        }
+        $template = 'home'; // $entity->getTemplate();
+        if (!array_key_exists($template, $templates)) {
+            throw $this->createNotFoundException("Not Found Template \"{$template}\"");
+        }
 
         return $this->render(
             $templates[$template],
             [
-                'entity' => $entity
+                //'entity' => $entity
             ]
         );
     }
