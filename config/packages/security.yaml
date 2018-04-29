@@ -30,16 +30,8 @@ security:
             anonymous:          true
 
         main:
-            pattern:             .*
-            context:             user
-            form_login:
-                provider:       fos_userbundle
-                login_path:     /login
-                use_forward:    false
-                check_path:     /login_check
-                failure_path:   null
-            logout:             true
-            anonymous:          true
+            pattern: ^/
+            security: false
 
             # activate different ways to authenticate
 

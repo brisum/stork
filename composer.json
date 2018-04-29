@@ -52,8 +52,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/App/",
-            "Brisum\\Stork\\Bundle\\PageBundle\\": "src/brisum/stork/page-bundle",
-            "Brisum\\Stork\\Bundle\\UserBundle\\": "src/brisum/stork/user-bundle"
+            "Brisum\\Stork\\Bundle\\PageBundle\\": "src/Stork/page-bundle",
+            "Brisum\\Stork\\Bundle\\UserBundle\\": "src/Stork/user-bundle"
         }
     },
     "autoload-dev": {

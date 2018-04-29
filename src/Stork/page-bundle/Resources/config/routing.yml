@@ -1,4 +1,4 @@
-bsm_page:
+stork_page:
     resource: "@StorkPageBundle/Controller/"
     type:     annotation
     prefix:   /

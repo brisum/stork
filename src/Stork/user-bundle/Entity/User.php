@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Stork\Bundle\UserBundle;
+namespace Brisum\Stork\Bundle\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -23,7 +23,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Brisum\Stork\Bundle\UserBundle\UserGroup")
+     * @ORM\ManyToMany(targetEntity="Brisum\Stork\Bundle\UserBundle\Entity\UserGroup")
      * @ORM\JoinTable(name="user_user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}

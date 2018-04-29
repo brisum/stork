@@ -1,5 +1,5 @@
 services:
-#    bsm_page.sonata_admin.page:
+#    stork_page.sonata_admin.page:
 #        class: StorkPageBundle\SonataAdmin\Page
 #        tags:
 #            - { name: sonata.admin, manager_type: orm, group: "Page", label: "Page" }
@@ -12,7 +12,7 @@ services:
 #            - [ inject, ['@service_container']]
 #        public: true
 #
-#    bsm_page.sonata_admin.page_seo_data:
+#    stork_page.sonata_admin.page_seo_data:
 #        class: StorkPageBundle\SonataAdmin\PageSeoData
 #        tags:
 #            - { name: sonata.admin, manager_type: orm, group: "Page", label: "SeoData" }

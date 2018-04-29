@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Stork\Bundle\UserBundle;
+namespace Brisum\Stork\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseGroup;
