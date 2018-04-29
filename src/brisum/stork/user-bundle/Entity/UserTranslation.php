@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Symfony\Cms\Bundle\CmsUserBundle;
+namespace Brisum\Stork\Bundle\CmsUserBundle;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;

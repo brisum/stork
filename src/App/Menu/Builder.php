@@ -2,7 +2,7 @@
 
 namespace App\Menu;
 
-use SymfonyCmsPageBundle\Entity\Page;
+use StorkPageBundle\Entity\Page;
 use BSMServiceBundle\Entity\Service;
 use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
@@ -22,7 +22,7 @@ class Builder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
 
         /** @var Page $pageHome */
-        $pageHome = $em->getRepository('SymfonyCmsPageBundle:Page')->findOneBy(['name' => 'home']);
+        $pageHome = $em->getRepository('StorkPageBundle:Page')->findOneBy(['name' => 'home']);
         if ($pageHome) {
             $menu->addChild(
                 'home',
@@ -70,7 +70,7 @@ class Builder implements ContainerAwareInterface
         );
 
         /** @var Page $pageContacts */
-        $pageContacts = $em->getRepository('SymfonyCmsPageBundle:Page')->findOneBy(['name' => 'contacts']);
+        $pageContacts = $em->getRepository('StorkPageBundle:Page')->findOneBy(['name' => 'contacts']);
         if ($pageContacts) {
             $menu->addChild(
                 'contacts',

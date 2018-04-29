@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Symfony\Cms\Bundle\SymfonyCmsPageBundle\Controller;
+namespace Brisum\Stork\Bundle\StorkPageBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,8 +19,8 @@ class PageController extends Controller
 //        /** @var EntityManager $em */
 //        $em = $this->getDoctrine()->getManager();
 //        /** @var Page $entity */
-//        $entity = $em->getRepository('SymfonyCmsPageBundle:Page')->findOneByName($name);
-        $templates = $this->getParameter('symfony_cms_page.templates');
+//        $entity = $em->getRepository('StorkPageBundle:Page')->findOneByName($name);
+        $templates = $this->getParameter('stork_page.templates');
 //
 //        if (!$entity || Page::STATUS_PUBLISH != $entity->getStatus()) {
 //            throw $this->createNotFoundException();

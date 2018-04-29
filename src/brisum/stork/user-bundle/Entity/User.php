@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Symfony\Cms\Bundle\CmsUserBundle;
+namespace Brisum\Stork\Bundle\CmsUserBundle;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;

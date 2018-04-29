@@ -1,4 +1,4 @@
 bsm_page:
-    resource: "@SymfonyCmsPageBundle/Controller/"
+    resource: "@StorkPageBundle/Controller/"
     type:     annotation
     prefix:   /

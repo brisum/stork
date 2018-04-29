@@ -1,10 +1,10 @@
 <?php
 
-namespace Brisum\Symfony\Cms\Bundle\CmsUserBundle;
+namespace Brisum\Stork\Bundle\StorkPageBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class CmsUserBundle extends Bundle
+class StorkPageBundle extends Bundle
 {
     /**
      * Returns the bundle name that this bundle overrides.
@@ -17,6 +17,6 @@ class CmsUserBundle extends Bundle
      */
     public function getParent()
     {
-        // TODO: Implement getParent() method.
+        return null;
     }
 }

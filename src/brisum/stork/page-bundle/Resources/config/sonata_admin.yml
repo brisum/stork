@@ -1,26 +1,26 @@
 services:
 #    bsm_page.sonata_admin.page:
-#        class: SymfonyCmsPageBundle\SonataAdmin\Page
+#        class: StorkPageBundle\SonataAdmin\Page
 #        tags:
 #            - { name: sonata.admin, manager_type: orm, group: "Page", label: "Page" }
 #        arguments:
 #            - ~
-#            - SymfonyCmsPageBundle\Entity\Page
+#            - StorkPageBundle\Entity\Page
 #            - ~
 #        calls:
-#            - [ setTranslationDomain, [SymfonyCmsPageBundle]]
+#            - [ setTranslationDomain, [StorkPageBundle]]
 #            - [ inject, ['@service_container']]
 #        public: true
 #
 #    bsm_page.sonata_admin.page_seo_data:
-#        class: SymfonyCmsPageBundle\SonataAdmin\PageSeoData
+#        class: StorkPageBundle\SonataAdmin\PageSeoData
 #        tags:
 #            - { name: sonata.admin, manager_type: orm, group: "Page", label: "SeoData" }
 #        arguments:
 #            - ~
-#            - SymfonyCmsPageBundle\Entity\PageSeoData
+#            - StorkPageBundle\Entity\PageSeoData
 #            - ~
 #        calls:
-#            - [ setTranslationDomain, [SymfonyCmsPageBundle]]
+#            - [ setTranslationDomain, [StorkPageBundle]]
 #            - [ inject, ['@service_container']]
 #        public: true

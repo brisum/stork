@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Symfony\Cms\Bundle\CmsUserBundle;
+namespace Brisum\Stork\Bundle\CmsUserBundle;
 
 use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
