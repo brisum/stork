@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Stork\Bundle\StorkPageBundle\Controller;
+namespace Brisum\Stork\Bundle\PageBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

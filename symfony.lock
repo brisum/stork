@@ -185,6 +185,9 @@
     "sonata-project/exporter": {
         "version": "1.8.0"
     },
+    "sonata-project/translation-bundle": {
+        "version": "2.3.0"
+    },
     "sonata-project/user-bundle": {
         "version": "4.1.1"
     },

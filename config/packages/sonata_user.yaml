@@ -1,3 +1,0 @@
-sonata_user:
-    security_acl: false
-    manager_type: orm

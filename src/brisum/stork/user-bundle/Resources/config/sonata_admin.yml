@@ -1,11 +1,11 @@
 services:
     bsm_user.sonata_admin.user:
-        class: BSMUserBundle\SonataAdmin\User
+        class: Brisum\Stork\Bundle\UserBundle\SonataAdmin\User
         tags:
             - { name: sonata.admin, manager_type: orm, group: "User", label: "User" }
         arguments:
             - ~
-            - BSMUserBundle\Entity\User
+            - Brisum\Stork\Bundle\UserBundle\User
             - ~
         calls:
             - [ setTranslationDomain, [BSMUserBundle]]

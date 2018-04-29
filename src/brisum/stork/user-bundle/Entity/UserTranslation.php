@@ -1,13 +1,13 @@
 <?php
 
-namespace Brisum\Stork\Bundle\CmsUserBundle;
+namespace Brisum\Stork\Bundle\UserBundle;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user_translation",
+ * @ORM\Table(name="user_translation",
  *     uniqueConstraints={@ORM\UniqueConstraint(name="lookup_unique_idx", columns={
  *         "locale", "object_id", "field"
  *     })}

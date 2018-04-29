@@ -3,14 +3,10 @@ fos_user:
 
     firewall_name: main
 
-    user_class: Sonata\UserBundle\Entity\BaseUser
+    user_class: Brisum\Stork\Bundle\UserBundle\User
 
     group:
-        group_class:   Sonata\UserBundle\Entity\BaseGroup
-        group_manager: sonata.user.orm.group_manager # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
-
-    service:
-        user_manager: sonata.user.orm.user_manager
+        group_class: Brisum\Stork\Bundle\UserBundle\UserGroup
 
     from_email:
         address: "developer@dsrv.in"

@@ -1,6 +1,6 @@
 <?php
 
-namespace BSMUserBundle\SonataAdmin;
+namespace Brisum\Stork\Bundle\UserBundle\SonataAdmin;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;

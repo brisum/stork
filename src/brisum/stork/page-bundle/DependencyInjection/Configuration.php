@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Stork\Bundle\StorkPageBundle\DependencyInjection;
+namespace Brisum\Stork\Bundle\PageBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

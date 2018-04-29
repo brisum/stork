@@ -1,6 +1,6 @@
 <?php
 
-namespace BSMUserBundle\SonataAdmin;
+namespace Brisum\Stork\Bundle\UserBundle\SonataAdmin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Show\ShowMapper;

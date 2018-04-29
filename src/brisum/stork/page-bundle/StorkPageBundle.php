@@ -1,6 +1,6 @@
 <?php
 
-namespace Brisum\Stork\Bundle\StorkPageBundle;
+namespace Brisum\Stork\Bundle\PageBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
