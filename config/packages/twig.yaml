@@ -1,4 +1,13 @@
+parameters:
+    ASSETS_VERSION: 20180808
+
 twig:
-    paths: ['%kernel.project_dir%/src/App/Resources/templates']
+    paths:
+        '%kernel.project_dir%/src/Core/Resources/templates': AppCore
+        '%kernel.project_dir%/src/Stork/core-bundle/Resources/templates': StorkCoreBundle
+
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+
+    globals:
+        ASSETS_VERSION: '%ASSETS_VERSION%'

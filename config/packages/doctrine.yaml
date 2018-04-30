@@ -9,14 +9,19 @@ doctrine:
     dbal:
         # configure these for your database server
         driver: 'pdo_mysql'
-        server_version: '5.7'
+        host: '10.0.0.1'
+        port: '3306'
+        dbname: 'brisum'
+        user: 'root'
+        password: '123123q'
+        server_version: 'mariadb-10.1.26'
         charset: utf8mb4
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
 
         # With Symfony 3.3, remove the `resolve:` prefix
-        url: '%env(resolve:DATABASE_URL)%'
+        # url: '%env(resolve:DATABASE_URL)%'
 
         types:
             json: Sonata\Doctrine\Types\JsonType
@@ -26,16 +31,15 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         mappings:
-            App:
+            AppCore:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/App/Entity'
+                dir: '%kernel.project_dir%/src/Core/Entity'
                 prefix: 'App\Entity'
                 alias: App
-            StorkUserBundle:
+            StorkCoreBundle:
                 is_bundle: true
                 type: annotation
                 dir: 'Entity'
-                prefix: 'Brisum\Stork\Bundle\UserBundle'
-                alias: StorkUserBundle
-            FOSUserBundle: ~
+                prefix: 'Brisum\Stork\Bundle\CoreBundle'
+                alias: StorkCoreBundle

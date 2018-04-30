@@ -1,8 +1,0 @@
-stork_page:
-    templates:
-        default:  Page/default.html.twig
-        home:     Page/home.html.twig
-        contacts: Page/contacts.html.twig
-    statuses:
-        publish: 'page.status.publish'
-        draft: 'page.status.draft'

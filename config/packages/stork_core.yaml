@@ -1,0 +1,9 @@
+stork_core:
+    page:
+        templates:
+            default:  '@AppCore/Page/default.html.twig'
+            home:     '@AppCore/Page/home.html.twig'
+            contacts: '@AppCore/Page/contacts.html.twig'
+        statuses:
+            publish: 'page.status.publish'
+            draft: 'page.status.draft'

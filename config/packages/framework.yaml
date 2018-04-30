@@ -1,3 +1,7 @@
+parameters:
+    admin_area: 'admin'
+    strok_admin_area: 'admin'
+
 framework:
     secret: '%env(APP_SECRET)%'
     #default_locale: en
@@ -30,5 +34,3 @@ framework:
         #app: cache.adapter.apcu
     templating:
         engines: [twig]
-
-    translator: { fallbacks: ["%locale%"] }

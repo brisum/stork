@@ -3,6 +3,6 @@
 #    controller: App\Controller\DefaultController::index
 
 
-stork_page:
-    resource: "@StorkPageBundle/Resources/config/routing.yml"
+stork_core:
+    resource: "@StorkCoreBundle/Resources/config/routing.yaml"
     prefix:   /
