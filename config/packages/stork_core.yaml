@@ -1,4 +1,9 @@
 stork_core:
+    seo:
+        templates:
+            page: ['page', 'page_home']
+            post_list: ['post_list']
+            blog: ['post']
     page:
         templates:
             default:  '@AppCore/Page/default.html.twig'
