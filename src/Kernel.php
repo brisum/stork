@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Brisum\FBCrawler\DependencyInjection\FBCrawlerExtension;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -33,6 +34,11 @@ class Kernel extends BaseKernel
                 yield new $class();
             }
         }
+    }
+
+    protected function prepareContainer(ContainerBuilder $container) {
+        $container->registerExtension(new FBCrawlerExtension());
+        parent::prepareContainer($container);
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)

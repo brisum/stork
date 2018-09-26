@@ -1,0 +1,6 @@
+services:
+  Brisum\FBCrawler\Console\CompanyCrawlCommand:
+    arguments:
+      $entityManager: '@doctrine.orm.entity_manager'
+    tags:
+      - { name: console.command }

@@ -1,0 +1,30 @@
+services:
+    fb_crawler.sonata_admin.account:
+        class: Brisum\FBCrawler\SonataAdmin\AccountAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Account", label: "Account" }
+        arguments:
+            - ~
+            - Brisum\FBCrawler\Entity\Account
+            - ~
+        public: true
+
+    fb_crawler.sonata_admin.company:
+        class: Brisum\FBCrawler\SonataAdmin\CompanyAdmin
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: "Company", label: "Company" }
+        arguments:
+        - ~
+        - Brisum\FBCrawler\Entity\Company
+        - ~
+        public: true
+
+    fb_crawler.sonata_admin.post:
+        class: Brisum\FBCrawler\SonataAdmin\PostAdmin
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: "Post", label: "Post" }
+        arguments:
+        - ~
+        - Brisum\FBCrawler\Entity\Post
+        - ~
+        public: true
