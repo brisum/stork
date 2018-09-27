@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DependencyInjection;
+namespace App\Core\DependencyInjection;
 
 use App\Service\Spelling\Month;
 use Symfony\Component\DependencyInjection\Container;

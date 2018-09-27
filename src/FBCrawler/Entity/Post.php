@@ -85,6 +85,13 @@ class Post
      */
     private $created;
 
+    public function __toString()
+    {
+        $company = (string) $this->getCompany();
+        $title = $this->getTitle();
+        return ($company ? "{$company}: " : '') . ($title ? $title : $this->getSubtitle());
+    }
+
     public function getId(): ?int
     {
         return $this->id;

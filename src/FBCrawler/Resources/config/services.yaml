@@ -2,5 +2,12 @@ services:
   Brisum\FBCrawler\Console\CompanyCrawlCommand:
     arguments:
       $entityManager: '@doctrine.orm.entity_manager'
+      $postService: '@fb_crawler.post.service'
     tags:
       - { name: console.command }
+
+  fb_crawler.post.service:
+    class: App\FBCrawler\Utils\PostService
+    arguments:
+      $uploadsDir: '%uploads_dir%'
+      $uploadsUrl: '%uploads_url%'

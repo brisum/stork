@@ -25,7 +25,7 @@ class AccountAdmin extends AbstractAdmin
         $formMapper
             ->add('name')
             ->add('email')
-            ->add('password')
+            // ->add('password')
         ;
     }
 

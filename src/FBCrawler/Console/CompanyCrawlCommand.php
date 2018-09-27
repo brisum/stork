@@ -2,6 +2,7 @@
 
 namespace Brisum\FBCrawler\Console;
 
+use App\FBCrawler\Utils\PostService;
 use Brisum\FBCrawler\Entity\Company;
 use Brisum\FBCrawler\Entity\Post;
 use Brisum\FBCrawler\Selenium\Page;
@@ -23,12 +24,19 @@ class CompanyCrawlCommand extends Command
     protected $entityManager;
 
     /**
-     * @param EntityManager $entityManager
+     * @var PostService
      */
-    public function __construct(EntityManager $entityManager) {
+    protected $postService;
+
+    /**
+     * @param EntityManager $entityManager
+     * @param PostService $postService
+     */
+    public function __construct(EntityManager $entityManager, PostService $postService) {
         parent::__construct();
 
         $this->entityManager = $entityManager;
+        $this->postService = $postService;
     }
 
     protected function configure()
@@ -76,13 +84,14 @@ class CompanyCrawlCommand extends Command
                 $post->setContent($report['content']);
                 $post->setImageUrl($report['image_url']);
                 $post->setImage('');
-
-                if (!$post->getId()) {
-                    $this->entityManager->persist($post);
-                }
+                $this->entityManager->persist($post);
                 $this->entityManager->flush($post);
-            }
 
+                if ($report['image_url']) {
+                    $post->setImage($this->postService->saveImage($post, $report['image_url']));
+                    $this->entityManager->flush($post);
+                }
+            }
         } catch (Exception $e) {
             echo $e->getMessage();
         } finally {
