@@ -56,20 +56,6 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="text", length=1000)
-     */
-    private $title;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="subtitle", type="text", length=1000)
-     */
-    private $subtitle;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="content", type="text")
      */
     private $content;
@@ -84,13 +70,6 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="publish_time", type="datetime")
-     */
-    private $publishTime;
-
-    /**
-     * @var \DateTime
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created", type="datetime")
      */
@@ -101,8 +80,7 @@ class Post
     public function __toString()
     {
         $company = (string) $this->getCompany();
-        $title = $this->getTitle();
-        return ($company ? "{$company}: " : '') . ($title ? $title : $this->getSubtitle());
+        return $this->getId() . ($company ? ": {$company}" : '');
     }
 
     public function getId(): ?int
@@ -146,30 +124,6 @@ class Post
         return $this;
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getSubtitle(): ?string
-    {
-        return $this->subtitle;
-    }
-
-    public function setSubtitle(string $subtitle): self
-    {
-        $this->subtitle = $subtitle;
-
-        return $this;
-    }
-
     public function getContent(): ?string
     {
         return $this->content;
@@ -190,18 +144,6 @@ class Post
     public function setData(array $data): self
     {
         $this->data = $data;
-
-        return $this;
-    }
-
-    public function getPublishTime(): ?\DateTimeInterface
-    {
-        return $this->publishTime;
-    }
-
-    public function setPublishTime(\DateTimeInterface $publishTime): self
-    {
-        $this->publishTime = $publishTime;
 
         return $this;
     }
