@@ -6,6 +6,7 @@ use App\FBCrawler\Utils\PostService;
 use Brisum\FBCrawler\Entity\Company;
 use Brisum\FBCrawler\Entity\Post;
 use Brisum\FBCrawler\Selenium\Page;
+use DateTime;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Facebook\WebDriver\Chrome\ChromeOptions;
@@ -60,8 +61,8 @@ class CompanyCrawlCommand extends Command
 
         try {
             $preferences = [
-
-                "profile.managed_default_content_settings.notifications" => 2
+                "profile.managed_default_content_settings.notifications" => 2,
+                'intl.accept_languages' => 'en-US'
             ];
             $caps = DesiredCapabilities::chrome();
             $caps->setCapability(ChromeOptions::CAPABILITY, ['prefs' => $preferences]);
@@ -73,27 +74,29 @@ class CompanyCrawlCommand extends Command
 
             $reports = $page->getReports();
             foreach ($reports as $report) {
-                $reportId = "{$report['report_id']}-{$report['publish_time']}";
+                $reportId = md5(serialize($report));
                 $postOrigin = $this->entityManager->getRepository(Post::class)->findOneBy(['reportId' => $reportId]);
                 $post = $postOrigin ? $postOrigin : new Post();
 
                 $post->setCompany($company);
                 $post->setReportId($reportId);
+                $post->setType($report['type']);
                 $post->setTitle($report['title']);
                 $post->setSubtitle($report['subtitle']);
                 $post->setContent($report['content']);
-                $post->setImageUrl($report['image_url']);
-                $post->setImage('');
+                $post->setData($report['data']);
+                $post->setPublishTime((new DateTime())->setTimestamp($report['publish_time']));
                 $this->entityManager->persist($post);
                 $this->entityManager->flush($post);
 
-                if ($report['image_url']) {
-                    $post->setImage($this->postService->saveImage($post, $report['image_url']));
+                if (Post::TYPE_PHOTO == $report['type'] && isset($report['data']['image_origin'])) {
+                    $report['data']['image'] = $this->postService->saveImage($post, $report['data']['image_origin']);
+                    $post->setData($report['data']);
                     $this->entityManager->flush($post);
                 }
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
+            //
         } finally {
             $driver->close();
         }

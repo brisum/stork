@@ -20,8 +20,8 @@ class PostAdmin extends AbstractAdmin
      */
     protected $datagridValues = array(
         '_page' => 1,
-        '_sort_order' => 'ASC',
-        '_sort_by' => 'id',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'publishTime',
     );
 
     /**
@@ -43,6 +43,7 @@ class PostAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('type')
             ->add('title')
             ->add('subtitle')
             ->add('company')
@@ -53,9 +54,11 @@ class PostAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id')
+            ->add('type')
             ->addIdentifier('title')
             ->addIdentifier('subtitle')
             ->add('company')
+            ->add('publishTime')
             ->add('created')
         ;
     }
@@ -67,11 +70,12 @@ class PostAdmin extends AbstractAdmin
 
         $formMapper
             ->add('company', StringType::class)
+            ->add('type', StringType::class)
             ->add('title', StringType::class)
             ->add('subtitle', StringType::class)
             ->add('content', StringType::class)
-            ->add('imageUrl', StringType::class)
-            ->add('image', ImagePreviewType::class)
+//            ->add('imageUrl', StringType::class)
+//            ->add('image', ImagePreviewType::class)
         ;
 
         if ($entity->getId()) {

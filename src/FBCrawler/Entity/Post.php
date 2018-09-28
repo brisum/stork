@@ -18,6 +18,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
+    const TYPE_PHOTO = 'photo';
+    const TYPE_UNKNOWN = null;
+
     /**
      * @var int
      *
@@ -45,6 +48,13 @@ class Post
     /**
      * @var string
      *
+     * @ORM\Column(name="type", type="string", length=10, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="title", type="text", length=1000)
      */
     private $title;
@@ -64,18 +74,18 @@ class Post
     private $content;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="image_url", type="text")
+     * @ORM\Column(name="data", type="array")
      */
-    private $imageUrl;
+    private $data;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="image", type="text")
+     * @ORM\Column(name="publish_time", type="datetime")
      */
-    private $image;
+    private $publishTime;
 
     /**
      * @var \DateTime
@@ -84,6 +94,8 @@ class Post
      * @ORM\Column(name="created", type="datetime")
      */
     private $created;
+
+
 
     public function __toString()
     {
@@ -97,6 +109,18 @@ class Post
         return $this->id;
     }
 
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
     public function getReportId(): ?string
     {
         return $this->reportId;
@@ -105,6 +129,18 @@ class Post
     public function setReportId(string $reportId): self
     {
         $this->reportId = $reportId;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
@@ -145,26 +181,26 @@ class Post
         return $this;
     }
 
-    public function getImageUrl(): ?string
+    public function getData(): ?array
     {
-        return $this->imageUrl;
+        return $this->data;
     }
 
-    public function setImageUrl(string $imageUrl): self
+    public function setData(array $data): self
     {
-        $this->imageUrl = $imageUrl;
+        $this->data = $data;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getPublishTime(): ?\DateTimeInterface
     {
-        return $this->image;
+        return $this->publishTime;
     }
 
-    public function setImage(string $image): self
+    public function setPublishTime(\DateTimeInterface $publishTime): self
     {
-        $this->image = $image;
+        $this->publishTime = $publishTime;
 
         return $this;
     }
@@ -177,18 +213,6 @@ class Post
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
-
-        return $this;
-    }
-
-    public function getCompany(): ?Company
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?Company $company): self
-    {
-        $this->company = $company;
 
         return $this;
     }
