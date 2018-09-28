@@ -5,7 +5,7 @@ namespace App\FBCrawler\Utils;
 use Brisum\FBCrawler\Entity\Post;
 use Exception;
 
-class PostService
+class AdsService
 {
     /**
      * @var string
@@ -36,6 +36,9 @@ class PostService
     public function saveImage(Post $post, $imageUrl)
     {
         $imageName = basename(preg_replace('/\?[^\?]*$/', '', $imageUrl));
+        if ('safe_image.php' == $imageName) {
+            $imageName = md5($imageUrl) . '.jpeg';
+        }
         $imageDir = $this->generateImageDir($post->getId());
         $imageRelativePath = $imageDir . $imageName;
         $imageFullPath = $this->uploadsDir . $imageRelativePath;

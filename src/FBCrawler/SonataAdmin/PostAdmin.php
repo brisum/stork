@@ -21,7 +21,7 @@ class PostAdmin extends AbstractAdmin
     protected $datagridValues = array(
         '_page' => 1,
         '_sort_order' => 'DESC',
-        '_sort_by' => 'publishTime',
+        '_sort_by' => 'id',
     );
 
     /**
@@ -44,21 +44,18 @@ class PostAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('type')
-            ->add('title')
-            ->add('subtitle')
             ->add('company')
+            ->add('content')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('type')
-            ->addIdentifier('title')
-            ->addIdentifier('subtitle')
             ->add('company')
-            ->add('publishTime')
+            ->addIdentifier('content')
             ->add('created')
         ;
     }
@@ -67,19 +64,13 @@ class PostAdmin extends AbstractAdmin
     {
         /** @var Post $entity */
         $entity = $formMapper->getAdmin()->getSubject();
+        $entityData = $entity->getData();
 
         $formMapper
-            ->add('company', StringType::class)
-            ->add('type', StringType::class)
-            ->add('title', StringType::class)
-            ->add('subtitle', StringType::class)
-            ->add('content', StringType::class)
-//            ->add('imageUrl', StringType::class)
-//            ->add('image', ImagePreviewType::class)
-        ;
-
-        if ($entity->getId()) {
-            $formMapper
+            ->with('Post')
+                ->add('company', StringType::class)
+                ->add('type', StringType::class)
+                ->add('content', StringType::class)
                 ->add(
                     'created',
                     StringType::class,
@@ -87,7 +78,87 @@ class PostAdmin extends AbstractAdmin
                         'data' => $entity->getCreated()->format('Y-m-d H:i:s')
                     ]
                 )
-            ;
+            ->end()
+        ;
+
+        switch ($entity->getType()) {
+            case Post::TYPE_PHOTO:
+                $formMapper
+                    ->with('Data')
+                        ->add(
+                            'imageOrigin',
+                            StringType::class,
+                            [
+                                'mapped' => false,
+                                'data' => $entityData['image_origin']
+                            ]
+                        )
+                        ->add(
+                            'image',
+                            ImagePreviewType::class,
+                            [
+                                'mapped' => false,
+                                'data' => $entityData['image']
+                            ]
+                        )
+                    ->end()
+                ;
+                break;
+
+            case Post::TYPE_CAROUSEL:
+                $formMapper->with('Data');
+                    foreach ($entityData['items'] as $itemNumber => $item) {
+                        $itemNumber += 1; // skip zero number
+                        $formMapper
+                            ->add(
+                                "link_{$itemNumber}",
+                                StringType::class,
+                                [
+                                    'mapped' => false,
+                                    'label' => "Link #{$itemNumber}",
+                                    'data' => $item['link']
+                                ]
+                            )
+                            ->add(
+                                "imageOrigin_{$itemNumber}",
+                                StringType::class,
+                                [
+                                    'mapped' => false,
+                                    'label' => "Image Origin #{$itemNumber}",
+                                    'data' => $item['image_origin']
+                                ]
+                            )
+                            ->add(
+                                "image_{$itemNumber}",
+                                ImagePreviewType::class,
+                                [
+                                    'mapped' => false,
+                                    'label' => "Image #{$itemNumber}",
+                                    'data' => $item['image']
+                                ]
+                            )
+                            ->add(
+                                "title_{$itemNumber}",
+                                StringType::class,
+                                [
+                                    'mapped' => false,
+                                    'label' => "Title #{$itemNumber}",
+                                    'data' => $item['title']
+                                ]
+                            )
+                            ->add(
+                                "subtitle_{$itemNumber}",
+                                StringType::class,
+                                [
+                                    'mapped' => false,
+                                    'label' => "Subtitle #{$itemNumber}",
+                                    'data' => $item['subtitle']
+                                ]
+                            )
+                        ;
+                    }
+                $formMapper->end();
+                break;
         }
     }
 }

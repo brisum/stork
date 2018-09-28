@@ -2,7 +2,7 @@
 
 namespace Brisum\FBCrawler\Console;
 
-use App\FBCrawler\Utils\PostService;
+use App\FBCrawler\Utils\AdsService;
 use Brisum\FBCrawler\Entity\Company;
 use Brisum\FBCrawler\Entity\Post;
 use Brisum\FBCrawler\Selenium\Page;
@@ -25,19 +25,19 @@ class CompanyCrawlCommand extends Command
     protected $entityManager;
 
     /**
-     * @var PostService
+     * @var AdsService
      */
-    protected $postService;
+    protected $adsService;
 
     /**
      * @param EntityManager $entityManager
-     * @param PostService $postService
+     * @param AdsService $adsService
      */
-    public function __construct(EntityManager $entityManager, PostService $postService) {
+    public function __construct(EntityManager $entityManager, AdsService $adsService) {
         parent::__construct();
 
         $this->entityManager = $entityManager;
-        $this->postService = $postService;
+        $this->adsService = $adsService;
     }
 
     protected function configure()
@@ -72,7 +72,7 @@ class CompanyCrawlCommand extends Command
             $page->open($company->getUrl());
             $page->scrollToBottom();
 
-            $reports = $page->getReports();
+            $reports = $page->getAds();
             foreach ($reports as $report) {
                 $reportId = md5(serialize($report));
                 $postOrigin = $this->entityManager->getRepository(Post::class)->findOneBy(['reportId' => $reportId]);
@@ -81,18 +81,30 @@ class CompanyCrawlCommand extends Command
                 $post->setCompany($company);
                 $post->setReportId($reportId);
                 $post->setType($report['type']);
-                $post->setTitle($report['title']);
-                $post->setSubtitle($report['subtitle']);
+                $post->setTitle('');
+                $post->setSubtitle('');
                 $post->setContent($report['content']);
                 $post->setData($report['data']);
-                $post->setPublishTime((new DateTime())->setTimestamp($report['publish_time']));
+                // $post->setPublishTime((new DateTime())->setTimestamp($report['publish_time']));
+                $post->setPublishTime((new DateTime()));
                 $this->entityManager->persist($post);
                 $this->entityManager->flush($post);
 
-                if (Post::TYPE_PHOTO == $report['type'] && isset($report['data']['image_origin'])) {
-                    $report['data']['image'] = $this->postService->saveImage($post, $report['data']['image_origin']);
-                    $post->setData($report['data']);
-                    $this->entityManager->flush($post);
+                switch ($report['type']) {
+                    case Post::TYPE_PHOTO:
+                        $report['data']['image'] = $this->adsService->saveImage($post, $report['data']['image_origin']);
+                        $post->setData($report['data']);
+                        $this->entityManager->flush($post);
+                        break;
+
+                    case Post::TYPE_CAROUSEL:
+                        foreach ($report['data']['items'] as $itemKey => $item) {
+                            $report['data']['items'][$itemKey]['image'] = $this->adsService
+                                ->saveImage($post, $item['image_origin']);
+                        }
+                        $post->setData($report['data']);
+                        $this->entityManager->flush($post);
+                        break;
                 }
             }
         } catch (Exception $e) {

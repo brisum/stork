@@ -2,11 +2,13 @@
 
 namespace Brisum\FBCrawler\Selenium;
 
+use App\FBCrawler\Utils\AdsService;
 use Brisum\FBCrawler\Entity\Post;
 use Exception;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\RemoteWebElement;
 use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverElement;
 
 class Page {
     /**
@@ -114,7 +116,10 @@ class Page {
         } while ($morePager);
     }
 
-    public function getReports()
+    /**
+     * @return array
+     */
+    public function getAds()
     {
         $reports = [];
         $reportElements = $this->driver->findElements(WebDriverBy::cssSelector('div[data-report-meta]'));
@@ -127,31 +132,44 @@ class Page {
                 $articleMeta = json_decode($articleElement->getAttribute('data-ft'), true);
                 $titleElement = $articleElement->findElement(WebDriverBy::cssSelector('a[data-lynx-mode]'));
                 $report = [
-                    'report_id' => $articleMeta['page_insights'][$articleMeta['page_id']]['post_context']['story_fbid'],
-                    'type' => Post::TYPE_UNKNOWN,
-                    'publish_time' => $articleMeta['page_insights'][$articleMeta['page_id']]['post_context']['publish_time'],
-                    'title' => $titleElement->isDisplayed() ? $titleElement->getText() : 'no title',
-                    'subtitle' => $titleElement->isDisplayed()
-                        ? $titleElement->findElement(WebDriverBy::xpath('parent::div//following-sibling::div'))->getText()
-                        : 'no subtitle',
-                    'content' => $articleElement->findElement(WebDriverBy::cssSelector('.userContent p'))
-                        ->getText(),
+                    'type' => $this->getAdsType($articleElement),
                     'data' => []
                 ];
 
-                switch ($this->getType($articleElement)) {
+                switch ($report['type']) {
                     case Post::TYPE_PHOTO:
-                        $report['type'] = Post::TYPE_PHOTO;
-                        $report['data']['image_origin'] = $articleElement->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'))
-                        ->getAttribute('src');
+                        $report['publish_time'] = $articleMeta['page_insights'][$articleMeta['page_id']]['post_context']['publish_time'];
+                        $report['content'] = $this->getAdsContent($articleElement);
+
+                        $report['title'] = $titleElement->isDisplayed() ? $titleElement->getText() : '';
+                        $report['subtitle'] =  $titleElement->isDisplayed()
+                            ? $titleElement->findElement(WebDriverBy::xpath('parent::div//following-sibling::div'))->getText()
+                            : '';
+                        $report['data']['image_origin'] = $articleElement
+                            ->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'))
+                            ->getAttribute('src');
                         break;
 
+                    case Post::TYPE_CAROUSEL:
+                        $report['content'] = $this->getAdsContent($articleElement);
+                        $report['data'] = $this->getAdsCarouselData($articleElement);
+                        break;
 
                     default:
-                        $report['type'] = Post::TYPE_UNKNOWN;
+                        $report['content'] = $articleElement
+                            ->findElement(WebDriverBy::cssSelector('.userContent p'))
+                            ->getText();
                 }
 
-                $reports[] = $report;
+                if (Post::TYPE_CAROUSEL != $report['type']) {
+                    continue;
+                }
+
+                if (Post::TYPE_UNKNOWN == $report['type']) {
+                    var_dump($report);
+                } else {
+                    $reports[] = $report;
+                }
             } catch (Exception $e) {
                 echo "\nNot parsed {$meta['report_id']}. {$e->getMessage()}\n";
             }
@@ -160,17 +178,89 @@ class Page {
         return array_reverse($reports);
     }
 
-    protected function getType(RemoteWebElement $element)
+    /**
+     * @param RemoteWebElement $element
+     * @return null|string
+     */
+    protected function getAdsType(RemoteWebElement $element)
     {
+        $elementDataFt = json_decode($element->getAttribute('data-ft'), true);
+
         try {
-            $image = $element->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'));
-            if ($image) {
-                return Post::TYPE_PHOTO;
-            }
+            $list = $element->findElement(WebDriverBy::cssSelector('ul.uiList'));
+            return Post::TYPE_CAROUSEL;
         } catch (Exception $e) {
 
         }
 
+//        try {
+//            $image = $element->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'));
+//            if (isset($elementDataFt['page_insights']) && $image) {
+//                return Post::TYPE_PHOTO;
+//            }
+//        } catch (Exception $e) {
+//
+//        }
+
         return Post::TYPE_UNKNOWN;
+    }
+
+    /**
+     * @param RemoteWebElement $articleElement
+     * @return string
+     */
+    protected function getAdsContent(RemoteWebElement $articleElement)
+    {
+        $content = [];
+
+        foreach ($articleElement->findElements(WebDriverBy::cssSelector('.userContent p')) as $p) {
+            $content[] = $p->getText();
+        }
+
+        return implode("\n", $content);
+    }
+
+    /**
+     * @param RemoteWebElement $element
+     * @return array
+     */
+    protected function getAdsCarouselData(RemoteWebElement $element)
+    {
+        $data = [
+            'items' => []
+        ];
+
+        $items = $element->findElements(WebDriverBy::cssSelector('ul.uiList li'));
+
+        foreach ($items as $item) {
+            $titleElement= $this->findElementOrNull($item, WebDriverBy::xpath('./div[1]/div/a/div/div/div[2]/div[1]'));
+            if (!$titleElement) {
+                $titleElement = $this->findElementOrNull($item, WebDriverBy::xpath('./div[1]/div/a/div/div'));
+            }
+            $subtitleElement = $this->findElementOrNull($item, WebDriverBy::xpath('./div[1]/div/a/div/div/div[2]/div[2]'));
+
+            $data['items'][] = [
+                'link' => $item->findElement(WebDriverBy::xpath('./div[1]/div/a'))->getAttribute('href'),
+                'image_origin' => $item->findElement(WebDriverBy::cssSelector('img.img'))->getAttribute('src'),
+                'title' => $titleElement ? $titleElement->getText() : '',
+                'subtitle' => $subtitleElement ? $subtitleElement->getText() : ''
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param WebDriverElement $context
+     * @param WebDriverBy $by
+     * @return WebDriverElement|null
+     */
+    protected function findElementOrNull(WebDriverElement $context, WebDriverBy $by)
+    {
+        try {
+            return $context->findElement($by);
+        } catch (Exception $e) {
+            return null;
+        }
     }
 }
