@@ -68,9 +68,10 @@ class CompanyCrawlCommand extends Command
             $caps->setCapability(ChromeOptions::CAPABILITY, ['prefs' => $preferences]);
             $driver = RemoteWebDriver::create('192.168.0.100:4444/wd/hub', $caps);
             $page = new Page($driver);
-            $page->login('facebook@brisum.com', '11cj,frf33');
+            // $page->login('facebook@brisum.com', '11cj,frf33');
+            $page->login('sasha.manchenko@gmail.com', '11raddet33Fb');
             $page->open($company->getUrl());
-            $page->scrollToBottom();
+            // $page->scrollToBottom();
 
             $reports = $page->getAds();
             foreach ($reports as $report) {
@@ -81,12 +82,8 @@ class CompanyCrawlCommand extends Command
                 $post->setCompany($company);
                 $post->setReportId($reportId);
                 $post->setType($report['type']);
-                $post->setTitle('');
-                $post->setSubtitle('');
                 $post->setContent($report['content']);
                 $post->setData($report['data']);
-                // $post->setPublishTime((new DateTime())->setTimestamp($report['publish_time']));
-                $post->setPublishTime((new DateTime()));
                 $this->entityManager->persist($post);
                 $this->entityManager->flush($post);
 

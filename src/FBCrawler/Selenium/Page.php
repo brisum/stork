@@ -2,7 +2,6 @@
 
 namespace Brisum\FBCrawler\Selenium;
 
-use App\FBCrawler\Utils\AdsService;
 use Brisum\FBCrawler\Entity\Post;
 use Exception;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
@@ -16,6 +15,10 @@ class Page {
      */
     protected $driver;
 
+    /**
+     * Page constructor.
+     * @param RemoteWebDriver $driver
+     */
     public function __construct(RemoteWebDriver $driver)
     {
         $this->driver = $driver;
@@ -129,8 +132,6 @@ class Page {
 
             try {
                 $articleElement = $reportElement->findElement(WebDriverBy::cssSelector('div[role="article"]'));
-                $articleMeta = json_decode($articleElement->getAttribute('data-ft'), true);
-                $titleElement = $articleElement->findElement(WebDriverBy::cssSelector('a[data-lynx-mode]'));
                 $report = [
                     'type' => $this->getAdsType($articleElement),
                     'data' => []
@@ -138,16 +139,8 @@ class Page {
 
                 switch ($report['type']) {
                     case Post::TYPE_PHOTO:
-                        $report['publish_time'] = $articleMeta['page_insights'][$articleMeta['page_id']]['post_context']['publish_time'];
                         $report['content'] = $this->getAdsContent($articleElement);
-
-                        $report['title'] = $titleElement->isDisplayed() ? $titleElement->getText() : '';
-                        $report['subtitle'] =  $titleElement->isDisplayed()
-                            ? $titleElement->findElement(WebDriverBy::xpath('parent::div//following-sibling::div'))->getText()
-                            : '';
-                        $report['data']['image_origin'] = $articleElement
-                            ->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'))
-                            ->getAttribute('src');
+                        $report['data'] = $this->getAdsPhotoData($articleElement);
                         break;
 
                     case Post::TYPE_CAROUSEL:
@@ -159,10 +152,6 @@ class Page {
                         $report['content'] = $articleElement
                             ->findElement(WebDriverBy::cssSelector('.userContent p'))
                             ->getText();
-                }
-
-                if (Post::TYPE_CAROUSEL != $report['type']) {
-                    continue;
                 }
 
                 if (Post::TYPE_UNKNOWN == $report['type']) {
@@ -193,14 +182,14 @@ class Page {
 
         }
 
-//        try {
-//            $image = $element->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'));
-//            if (isset($elementDataFt['page_insights']) && $image) {
-//                return Post::TYPE_PHOTO;
-//            }
-//        } catch (Exception $e) {
-//
-//        }
+        try {
+            $image = $element->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'));
+            if (isset($elementDataFt['page_insights']) && $image) {
+                return Post::TYPE_PHOTO;
+            }
+        } catch (Exception $e) {
+
+        }
 
         return Post::TYPE_UNKNOWN;
     }
@@ -220,6 +209,21 @@ class Page {
         return implode("\n", $content);
     }
 
+    protected function getAdsPhotoData(RemoteWebElement $articleElement)
+    {
+        $titleElement = $this->findElementOrNull($articleElement, WebDriverBy::cssSelector('a[data-lynx-mode]'));
+        $subtitleElement = $this->findElementOrNull($articleElement, WebDriverBy::xpath('parent::div//following-sibling::div'));
+        $data = [];
+
+        $data['title'] = $titleElement ? $titleElement->getText() : '';
+        $data['subtitle'] =  $subtitleElement ? $subtitleElement->getText() : '';
+        $data['image_origin'] = $articleElement
+            ->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'))
+            ->getAttribute('src');
+
+        return $data;
+    }
+
     /**
      * @param RemoteWebElement $element
      * @return array
@@ -231,6 +235,9 @@ class Page {
         ];
 
         $items = $element->findElements(WebDriverBy::cssSelector('ul.uiList li'));
+        $nextArrow = $element->findElement(
+            WebDriverBy::xpath("//ul[contains(@class,'uiList')]/following-sibling::div[2]/a[1]")
+        );
 
         foreach ($items as $item) {
             $titleElement= $this->findElementOrNull($item, WebDriverBy::xpath('./div[1]/div/a/div/div/div[2]/div[1]'));
@@ -245,6 +252,8 @@ class Page {
                 'title' => $titleElement ? $titleElement->getText() : '',
                 'subtitle' => $subtitleElement ? $subtitleElement->getText() : ''
             ];
+
+            $nextArrow->isDisplayed() && $nextArrow->click();
         }
 
         return $data;

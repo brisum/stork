@@ -25,6 +25,16 @@ class PostAdmin extends AbstractAdmin
     );
 
     /**
+     * @var int
+     */
+    protected $maxPerPage = 50;
+
+    /**
+     * @var array
+     */
+    protected $perPageOptions = [50, 100, 200];
+
+    /**
      * @param RouteCollection $collection
      */
     protected function configureRoutes(RouteCollection $collection)
@@ -99,6 +109,22 @@ class PostAdmin extends AbstractAdmin
                             [
                                 'mapped' => false,
                                 'data' => $entityData['image']
+                            ]
+                        )
+                        ->add(
+                            "title",
+                            StringType::class,
+                            [
+                                'mapped' => false,
+                                'data' => $entityData['title']
+                            ]
+                        )
+                        ->add(
+                            "subtitle",
+                            StringType::class,
+                            [
+                                'mapped' => false,
+                                'data' => $entityData['subtitle']
                             ]
                         )
                     ->end()
