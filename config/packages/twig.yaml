@@ -4,10 +4,12 @@ parameters:
 twig:
     paths:
         '%kernel.project_dir%/src/Core/Resources/templates': AppCore
-        '%kernel.project_dir%/src/Stork/core-bundle/Resources/templates': StorkCoreBundle
 
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+
+    form_themes:
+    - '@AppCore/Form/fields.html.twig'
 
     globals:
         ASSETS_VERSION: '%ASSETS_VERSION%'

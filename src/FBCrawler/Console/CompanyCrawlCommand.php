@@ -8,6 +8,7 @@ use Brisum\FBCrawler\Entity\Post;
 use Brisum\FBCrawler\Selenium\Page;
 use DateTime;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Exception;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -48,7 +49,15 @@ class CompanyCrawlCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output) {
+        $this->entityManager->getConnection()->executeQuery('TRUNCATE `post`');
+        $this->entityManager->getConnection()->executeQuery('ALTER TABLE `post` auto_increment = 1');
+        $this->entityManager->flush();
+
+        $this->fetchAdsFeed($input, $output);
+    }
+
+    protected function fetchAdsFeed(InputInterface $input, OutputInterface $output)
     {
         $companyName = $input->getArgument('company');
         /** @var Company $company */
@@ -68,12 +77,12 @@ class CompanyCrawlCommand extends Command
             $caps->setCapability(ChromeOptions::CAPABILITY, ['prefs' => $preferences]);
             $driver = RemoteWebDriver::create('192.168.0.100:4444/wd/hub', $caps);
             $page = new Page($driver);
-            // $page->login('facebook@brisum.com', '11cj,frf33');
-            $page->login('sasha.manchenko@gmail.com', '11raddet33Fb');
-            $page->open($company->getUrl());
-            // $page->scrollToBottom();
+            $page->login('facebook@brisum.com', '11cj,frf33');
+            // $page->login('sasha.manchenko@gmail.com', '11raddet33Fb');
+            $page->open($company->getAdsFeedUrl());
+            $page->scrollToBottom();
 
-            $reports = $page->getAds();
+            $reports = $page->getAdsList();
             foreach ($reports as $report) {
                 $reportId = md5(serialize($report));
                 $postOrigin = $this->entityManager->getRepository(Post::class)->findOneBy(['reportId' => $reportId]);
@@ -88,7 +97,7 @@ class CompanyCrawlCommand extends Command
                 $this->entityManager->flush($post);
 
                 switch ($report['type']) {
-                    case Post::TYPE_PHOTO:
+                    case Post::TYPE_IMAGE:
                         $report['data']['image'] = $this->adsService->saveImage($post, $report['data']['image_origin']);
                         $post->setData($report['data']);
                         $this->entityManager->flush($post);

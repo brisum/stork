@@ -91,9 +91,11 @@ class Page {
                     function () use ($content) {
                         $position = $this->driver->executeScript(
                                 "return (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0)"
-                            ) + 500;
+                            ) + 100;
                         $this->driver->executeScript("window.scrollBy(0, {$position})");
                         $class = $content->findElement(WebDriverBy::cssSelector('.uiMorePager'))->getAttribute('class');
+
+                        usleep(500000);
 
                         echo "{$class}\n";
 
@@ -122,7 +124,7 @@ class Page {
     /**
      * @return array
      */
-    public function getAds()
+    public function getAdsList()
     {
         $reports = [];
         $reportElements = $this->driver->findElements(WebDriverBy::cssSelector('div[data-report-meta]'));
@@ -131,6 +133,7 @@ class Page {
             $meta = json_decode($reportElement->getAttribute('data-report-meta'), true);
 
             try {
+                $this->scrollTo($reportElement);
                 $articleElement = $reportElement->findElement(WebDriverBy::cssSelector('div[role="article"]'));
                 $report = [
                     'type' => $this->getAdsType($articleElement),
@@ -138,9 +141,9 @@ class Page {
                 ];
 
                 switch ($report['type']) {
-                    case Post::TYPE_PHOTO:
+                    case Post::TYPE_IMAGE:
                         $report['content'] = $this->getAdsContent($articleElement);
-                        $report['data'] = $this->getAdsPhotoData($articleElement);
+                        $report['data'] = $this->getAdsImageData($articleElement);
                         break;
 
                     case Post::TYPE_CAROUSEL:
@@ -185,7 +188,7 @@ class Page {
         try {
             $image = $element->findElement(WebDriverBy::cssSelector('.uiScaledImageContainer img'));
             if (isset($elementDataFt['page_insights']) && $image) {
-                return Post::TYPE_PHOTO;
+                return Post::TYPE_IMAGE;
             }
         } catch (Exception $e) {
 
@@ -209,11 +212,26 @@ class Page {
         return implode("\n", $content);
     }
 
-    protected function getAdsPhotoData(RemoteWebElement $articleElement)
+    /**
+     * @param RemoteWebElement $articleElement
+     * @return array
+     */
+    protected function getAdsImageData(RemoteWebElement $articleElement)
     {
-        $titleElement = $this->findElementOrNull($articleElement, WebDriverBy::cssSelector('a[data-lynx-mode]'));
-        $subtitleElement = $this->findElementOrNull($articleElement, WebDriverBy::xpath('parent::div//following-sibling::div'));
+        $titleElement = $this->findElementOrNull($articleElement, WebDriverBy::cssSelector('.mtm span div a[data-lynx-mode]'));
+        $subtitleElement = $titleElement
+            ? $this->findElementOrNull($titleElement, WebDriverBy::xpath('parent::div/parent::div/following-sibling::div//a[@data-lynx-mode]'))
+            : null;
         $data = [];
+
+        if (!$titleElement || !$titleElement->getText()) {
+            $titleElement = $this->findElementOrNull($articleElement, WebDriverBy::cssSelector('.mtm span div div.ellipsis'));
+        }
+        if (!$subtitleElement || !$subtitleElement->getText()) {
+            $subtitleElement = $titleElement
+                ? $this->findElementOrNull($titleElement, WebDriverBy::xpath('parent::div/parent::div/following-sibling::div//a[@data-lynx-mode]'))
+                : null;
+        }
 
         $data['title'] = $titleElement ? $titleElement->getText() : '';
         $data['subtitle'] =  $subtitleElement ? $subtitleElement->getText() : '';
@@ -253,7 +271,11 @@ class Page {
                 'subtitle' => $subtitleElement ? $subtitleElement->getText() : ''
             ];
 
-            $nextArrow->isDisplayed() && $nextArrow->click();
+            try {
+                $nextArrow->click();
+            } catch (Exception $e) {};
+
+            sleep(1);
         }
 
         return $data;
@@ -271,5 +293,24 @@ class Page {
         } catch (Exception $e) {
             return null;
         }
+    }
+
+    /**
+     * @param WebDriverElement $element
+     * @throws Exception
+     */
+    protected function scrollTo(WebDriverElement $element)
+    {
+        $id = $element->getAttribute('id');
+        $offset = 100;
+
+        if (!$id) {
+            throw new Exception("Id of the element is empty");
+        }
+
+        $top = $this->driver->executeScript(
+            "return document.getElementById('{$id}').getBoundingClientRect().top - {$offset};"
+        );
+        $this->driver->executeScript("window.scrollBy(0, {$top})");
     }
 }

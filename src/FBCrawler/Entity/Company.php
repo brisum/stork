@@ -34,9 +34,16 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="text")
+     * @ORM\Column(name="page_feed_url", type="text")
      */
-    private $url;
+    private $pageFeedUrl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ads_feed_url", type="text")
+     */
+    private $adsFeedUrl;
 
     /**
      * @var \DateTime
@@ -86,14 +93,26 @@ class Company
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function getPageFeedUrl(): ?string
     {
-        return $this->url;
+        return $this->pageFeedUrl;
     }
 
-    public function setUrl(string $url): self
+    public function setPageFeedUrl(string $pageFeedUrl): self
     {
-        $this->url = $url;
+        $this->pageFeedUrl = $pageFeedUrl;
+
+        return $this;
+    }
+
+    public function getAdsFeedUrl(): ?string
+    {
+        return $this->adsFeedUrl;
+    }
+
+    public function setAdsFeedUrl(string $adsFeedUrl): self
+    {
+        $this->adsFeedUrl = $adsFeedUrl;
 
         return $this;
     }

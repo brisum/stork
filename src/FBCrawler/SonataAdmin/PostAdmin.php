@@ -92,7 +92,7 @@ class PostAdmin extends AbstractAdmin
         ;
 
         switch ($entity->getType()) {
-            case Post::TYPE_PHOTO:
+            case Post::TYPE_IMAGE:
                 $formMapper
                     ->with('Data')
                         ->add(

@@ -1,6 +1,7 @@
 parameters:
-    admin_area: 'admin'
-    strok_admin_area: 'admin'
+    admin_area: '/'
+    uploads_dir: '%kernel.project_dir%/public/uploads/'
+    uploads_url: '/uploads/'
 
 framework:
     secret: '%env(APP_SECRET)%'

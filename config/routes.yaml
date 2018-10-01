@@ -1,8 +1,3 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-
-
-stork_core:
-    resource: "@StorkCoreBundle/Resources/config/routing.yaml"
-    prefix:   /

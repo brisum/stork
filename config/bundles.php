@@ -24,7 +24,5 @@ return [
     Sonata\AdminBundle\SonataAdminBundle::class => ['all' => true],
     Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle::class => ['all' => true],
     Sonata\EasyExtendsBundle\SonataEasyExtendsBundle::class => ['all' => true],
-    Sonata\TranslationBundle\SonataTranslationBundle::class => ['all' => true],
-
-    Brisum\Stork\Bundle\CoreBundle\StorkCoreBundle::class => ['all' => true],
+    Sonata\TranslationBundle\SonataTranslationBundle::class => ['all' => true]
 ];

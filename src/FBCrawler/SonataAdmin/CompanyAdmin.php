@@ -40,7 +40,8 @@ class CompanyAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
-            ->add('url', TextType::class)
+            ->add('pageFeedUrl', TextType::class)
+            ->add('adsFeedUrl', TextType::class)
         ;
     }
 }

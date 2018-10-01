@@ -1,8 +1,23 @@
 sonata_admin:
-    title: 'Sonata Admin'
+    security:
+        handler: sonata.admin.security.handler.role
+
+        role_admin: IS_AUTHENTICATED_ANONYMOUSLY
+        role_super_admin: IS_AUTHENTICATED_ANONYMOUSLY
+
+    title: 'FB Crawler'
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
+        groups:
+            fb_crawler.account:
+                label: 'FB Crawler'
+                icon: '<i class="fa fa-id-card-o" aria-hidden="true"></i>'
+                keep_open: true
+                items:
+                    - fb_crawler.sonata_admin.post
+                    - fb_crawler.sonata_admin.company
+                    - fb_crawler.sonata_admin.account
 
 sonata_block:
     blocks:

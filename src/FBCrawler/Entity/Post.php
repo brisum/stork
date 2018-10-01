@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
-    const TYPE_PHOTO = 'photo';
+    const TYPE_IMAGE = 'image';
     const TYPE_CAROUSEL= 'carousel';
     const TYPE_UNKNOWN = null;
 
