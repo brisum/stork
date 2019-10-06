@@ -4,7 +4,7 @@ parameters:
 twig:
     paths:
         '%kernel.project_dir%/src/Core/Resources/templates': AppCore
-        '%kernel.project_dir%/src/Stork/core-bundle/Resources/templates': StorkCoreBundle
+        '%kernel.project_dir%/vendor/brisum/stork/core-bundle/src/Resources/templates': StorkCoreBundle
 
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'

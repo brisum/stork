@@ -38,8 +38,8 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: App
             StorkCoreBundle:
-                is_bundle: true
+                is_bundle: false
                 type: annotation
-                dir: 'Entity'
+                dir: '%kernel.project_dir%/vendor/brisum/stork/core-bundle/src/Entity'
                 prefix: 'Brisum\Stork\Bundle\CoreBundle'
                 alias: StorkCoreBundle
