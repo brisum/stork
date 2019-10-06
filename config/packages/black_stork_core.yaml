@@ -1,4 +1,4 @@
-stork_core:
+black_stork_core:
     seo:
         templates:
             page: ['page', 'page_home']

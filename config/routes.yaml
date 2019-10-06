@@ -4,5 +4,5 @@
 
 
 stork_core:
-    resource: "@StorkCoreBundle/Resources/config/routing.yaml"
+    resource: "@BlackStorkCoreBundle/Resources/config/routing.yaml"
     prefix:   /

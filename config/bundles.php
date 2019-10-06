@@ -26,5 +26,5 @@ return [
     Sonata\EasyExtendsBundle\SonataEasyExtendsBundle::class => ['all' => true],
     Sonata\TranslationBundle\SonataTranslationBundle::class => ['all' => true],
 
-    Brisum\Stork\Bundle\CoreBundle\StorkCoreBundle::class => ['all' => true],
+    BlackStork\Core\BlackStorkCoreBundle::class => ['all' => true],
 ];

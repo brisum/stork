@@ -1,15 +1,15 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
-        Brisum\Stork\Bundle\CoreBundle\Entity\Employee:
-            id: stork.security.plain_password_encoder
+        BlackStork\Core\Entity\Employee:
+            id: black_stork.security.plain_password_encoder
 
 #    acl:
 #        connection: default
 
     providers:
         stork_employee:
-            id: stork.employee_provider.email
+            id: black_stork.employee_provider.email
 
     firewalls:
         dev:

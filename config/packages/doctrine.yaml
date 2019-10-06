@@ -9,9 +9,9 @@ doctrine:
     dbal:
         # configure these for your database server
         driver: 'pdo_mysql'
-        host: '10.0.0.1'
+        host: '192.168.0.101'
         port: '3306'
-        dbname: 'brisum'
+        dbname: 'black-stork'
         user: 'root'
         password: '123123q'
         server_version: 'mariadb-10.1.26'
@@ -37,9 +37,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Core/Entity'
                 prefix: 'App\Entity'
                 alias: App
-            StorkCoreBundle:
+            BlackStorkCore:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/vendor/brisum/stork/core-bundle/src/Entity'
-                prefix: 'Brisum\Stork\Bundle\CoreBundle'
-                alias: StorkCoreBundle
+                dir: '%kernel.project_dir%/vendor/cms-black-stork/core/src/Entity'
+                prefix: 'BlackStork\Core'
+                alias: BlackStorkCore
