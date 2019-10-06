@@ -3,6 +3,9 @@ security:
     encoders:
         BlackStork\Core\Entity\Employee:
             id: black_stork.security.plain_password_encoder
+        App\Entity\Admin:
+            algorithm: auto
+
 
 #    acl:
 #        connection: default
@@ -10,6 +13,11 @@ security:
     providers:
         stork_employee:
             id: black_stork.employee_provider.email
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\Admin
+                property: admin
 
     firewalls:
         dev:

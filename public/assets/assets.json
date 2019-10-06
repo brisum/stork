@@ -1,0 +1,28 @@
+{
+  "style": {
+    "js": "/assets/style.js?2d8d7b10aadb9f688ed4",
+    "css": "/assets/style.css?d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "font_awesome": {
+    "js": "/assets/font_awesome.js?49eb7cbd7e00f572da08",
+    "css": "/assets/font_awesome.css?b02ab6778a142832290c824698b5a100"
+  },
+  "main": {
+    "js": "/assets/main.js?ed5c99837672d4dd21ff"
+  },
+  "bootstrap": {
+    "js": "/assets/bootstrap.js?e830a03a323dd3f41aa3",
+    "css": "/assets/bootstrap.css?203b1a4a1c4701d7684ff4d21df036a7"
+  },
+  "": {
+    "eot": "/assets/674f50d287a8c48dc19ba404d20fe713.eot",
+    "woff": "/assets/fee66e712a8a08eef5805a46892932ad.woff",
+    "ttf": "/assets/b06871f281fee6b241d60582ae9369b9.ttf",
+    "svg": "/assets/912ec66d7572ff821749319396470bde.svg",
+    "woff2": "/assets/af7ae505a9eed503f8b8e6982036873e.woff2",
+    "js": [
+      "/assets/jquery.js?c528e3e336cd57db03df",
+      "/assets/bootstrap.js?a454220fc07088bf1fdd"
+    ]
+  }
+}

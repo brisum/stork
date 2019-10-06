@@ -4,7 +4,7 @@ parameters:
 twig:
     paths:
         '%kernel.project_dir%/src/Core/Resources/templates': AppCore
-        '%kernel.project_dir%/vendor/cms-black-stork/core/src/Resources/templates': BlackStorkCore
+        '%kernel.project_dir%/vendor/cms-black-stork/core/src/Resources/templates': BlackStorkCoreBundle
 
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
